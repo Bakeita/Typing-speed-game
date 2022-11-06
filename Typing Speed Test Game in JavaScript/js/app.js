@@ -7,7 +7,7 @@ const typingText = document.querySelector(".typing-text p"),
     cpmTag = document.querySelector(".cpm span");
 input.value = ""
 let timer,
-    maxTime = 60,
+    maxTime = 5,
     timeLeft = maxTime,
     charIndex = mistakes = isTyping = 0,
     corrects = 0;
@@ -56,7 +56,6 @@ input.addEventListener('keydown', (e) => {
         }
         characters.forEach(span => span.classList.remove("active"));
         characters[charIndex].classList.add("active");
-        console.log(input.value)
     } else {
         characters.forEach(span => span.classList.remove("active"));
     }
@@ -80,11 +79,11 @@ function initTimer() {
         timeLeft--;
         timeTag.innerText = timeLeft;
     } else {
+        typingText.innerHTML = ""
         typingText.querySelectorAll("span").forEach(span => span.remove())
         input.value = ""
         clearInterval(timer);
     }
 }
-
 loadParagraph()
-btn_try.addEventListener("click", resetGame);
+tryAgainBtn.addEventListener("click", resetGame);
